@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jyothish Lal J | Dynamics 365 Commerce Technical Consultant</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121933;
+      --panel-2: #182243;
+      --text: #eaf0ff;
+      --muted: #b7c3e0;
+      --line: rgba(255,255,255,0.08);
+      --brand: #5b8cff;
+      --brand-2: #7bdcff;
+      --accent: #9df0c8;
+      --shadow: 0 20px 50px rgba(0,0,0,0.28);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(91, 140, 255, 0.18), transparent 28%),
+        radial-gradient(circle at top left, rgba(123, 220, 255, 0.10), transparent 24%),
+        linear-gradient(180deg, #08101f 0%, #0b1020 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(8, 14, 29, 0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .logo span {
+      color: var(--brand-2);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: white;
+      box-shadow: 0 10px 30px rgba(91, 140, 255, 0.30);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 34px rgba(91, 140, 255, 0.35);
+    }
+
+    .btn-secondary {
+      border-color: rgba(255,255,255,0.16);
+      color: var(--text);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.05);
+    }
+
+    .hero {
+      padding: 72px 0 32px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .glass-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -40px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(123,220,255,0.18), transparent 62%);
+      pointer-events: none;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(123, 220, 255, 0.10);
+      color: var(--brand-2);
+      border: 1px solid rgba(123, 220, 255, 0.18);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4.2vw, 3.5rem);
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.55rem;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .profile-card {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .profile-top {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 76px;
+      height: 76px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--brand), #7a7cff);
+      font-size: 1.8rem;
+      font-weight: 800;
+      box-shadow: 0 12px 28px rgba(91, 140, 255, 0.34);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .contact-item {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      word-break: break-word;
+    }
+
+    section {
+      padding: 28px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 22px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+
+    .skill-list,
+    .bullet-list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .skill-list li,
+    .bullet-list li {
+      color: var(--muted);
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .skill-list li::before,
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand-2), var(--accent));
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      padding: 24px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .timeline-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .timeline-top .role {
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+
+    .timeline-top .meta {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .project-card {
+      padding: 24px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .project-card p {
+      color: var(--muted);
+      margin: 10px 0 14px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      color: #dce7ff;
+      font-size: 0.88rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .cta {
+      margin: 30px 0 70px;
+      padding: 30px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, rgba(91,140,255,0.18), rgba(123,220,255,0.12));
+      border: 1px solid rgba(123,220,255,0.16);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 24px 0 40px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .cards,
+      .projects,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 0;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero-card,
+      .profile-card,
+      .card,
+      .timeline-item,
+      .project-card,
+      .cta {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#home" class="logo">Jyothish <span>Lal J</span></a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <div class="tag">Dynamics 365 Commerce • MPOS / CPOS • UAE Healthcare Integrations</div>
+          <h1>Microsoft Dynamics 365 Commerce Technical Consultant</h1>
+          <p class="hero-subtitle">
+            Dynamics 365 Commerce (Retail) technical consultant with 6+ years of experience delivering MPOS/CPOS customizations,
+            Hardware Station extensions, integrations, and production deployments across the UAE. Strong in Shafafiya, DHA,
+            Riayati, GS1, pharmacy workflows, SDLC/UAT, troubleshooting, and performance optimization.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:jyothish7776@gmail.com">Hire Me</a>
+            <a class="btn btn-secondary" href="#projects">View Projects</a>
+            <a class="btn btn-secondary" href="/mnt/data/Jyothish_UAE.pdf" download>Download CV</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>6+ Years</strong>
+              <span>Dynamics 365, .NET, POS and integration experience</span>
+            </div>
+            <div class="stat">
+              <strong>UAE Domain</strong>
+              <span>Pharmacy, healthcare insurance and retail deployment exposure</span>
+            </div>
+            <div class="stat">
+              <strong>End-to-End</strong>
+              <span>Requirement gathering, development, UAT, deployment and support</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="glass-card profile-card" id="contact">
+          <div class="profile-top">
+            <div class="avatar">JL</div>
+            <div>
+              <h2 style="margin-bottom:6px;">Jyothish Lal J</h2>
+              <div class="muted">Abu Dhabi, UAE</div>
+            </div>
+          </div>
+          <div class="contact-list">
+            <div class="contact-item"><strong>Email:</strong><br> jyothish7776@gmail.com</div>
+            <div class="contact-item"><strong>Phone:</strong><br> +971 56 612 6553</div>
+            <div class="contact-item"><strong>Specialization:</strong><br> D365 Commerce, MPOS/CPOS, Hardware Station, Healthcare Insurance Integration</div>
+            <div class="contact-item">
+              <strong>Profiles:</strong><br>
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+                <a class="btn btn-secondary" href="#" target="_blank" rel="noopener noreferrer" style="padding:10px 16px;">GitHub</a>
+                <a class="btn btn-secondary" href="https://www.linkedin.com/in/jyothish-lal-j-764891147" target="_blank" rel="noopener noreferrer" style="padding:10px 16px;">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>About Me</h2>
+            <p>
+              I design and deliver practical retail technology solutions using Microsoft Dynamics 365 Commerce, with a strong focus on
+              pharmacy, healthcare insurance integration, production stability, and high-volume POS operations in the UAE.
+            </p>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="card">
+            <h3>What I Do</h3>
+            <ul class="bullet-list">
+              <li>Build MPOS/CPOS customizations and user-focused POS extensions.</li>
+              <li>Develop Hardware Station extensions, printing workflows, and store-side integrations.</li>
+              <li>Integrate healthcare and retail systems including Shafafiya, DHA, Riayati, Tatmeen, and GS1 workflows.</li>
+              <li>Support UAT, production rollouts, hotfixes, troubleshooting, and performance tuning.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Why Clients Value My Work</h3>
+            <ul class="bullet-list">
+              <li>Strong knowledge of UAE pharmacy and healthcare retail operations.</li>
+              <li>Hands-on problem-solving during live deployment and production support.</li>
+              <li>Ability to translate business requirements into stable, usable technical solutions.</li>
+              <li>Experience across custom development, SQL, reporting, validation, and release support.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Core Skills</h2>
+            <p>Technologies, platforms, and delivery strengths built through Dynamics 365 Commerce and integration projects.</p>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <h3>Commerce & POS</h3>
+            <ul class="skill-list">
+              <li>Dynamics 365 Commerce</li>
+              <li>MPOS / CPOS Customization</li>
+              <li>POS Extensions</li>
+              <li>Hardware Station Extensions</li>
+              <li>Invoice / Label Printing</li>
+              <li>Deployment & Production Support</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Development</h3>
+            <ul class="skill-list">
+              <li>C#</li>
+              <li>.NET Framework</li>
+              <li>TypeScript</li>
+              <li>Knockout.js</li>
+              <li>JavaScript</li>
+              <li>REST / SOAP Integration Patterns</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Data & Delivery</h3>
+            <ul class="skill-list">
+              <li>SQL Server</li>
+              <li>Stored Procedures & Query Tuning</li>
+              <li>Data Validation & Reconciliation</li>
+              <li>Requirement Gathering</li>
+              <li>UAT & Incident Resolution</li>
+              <li>Azure DevOps & Git</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Professional Experience</h2>
+            <p>A strong track record of delivering retail and healthcare technology solutions across UAE and GCC projects.</p>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-top">
+              <div>
+                <div class="role">D365 Commerce Consultant (MPOS/CPOS Developer)</div>
+                <div class="meta">Pharma Link Drug Store • Abu Dhabi, UAE</div>
+              </div>
+              <div class="meta">Aug 2024 – Present</div>
+            </div>
+            <ul class="bullet-list">
+              <li>Develop and customize Dynamics 365 Commerce MPOS/CPOS features and extensions for pharmacy retail operations.</li>
+              <li>Implement integrations and enhancements including GS1 barcode scanning, discount and voucher modules, portal integration, and Tatmeen workflows.</li>
+              <li>Handle UAT, deployment activities, live issue resolution, and post-production support.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-top">
+              <div>
+                <div class="role">Consultant (D365 MPOS/CPOS Developer)</div>
+                <div class="meta">D365 Solution Private Limited • GCC Client Projects</div>
+              </div>
+              <div class="meta">2020 – Feb 2024</div>
+            </div>
+            <ul class="bullet-list">
+              <li>Delivered MPOS/CPOS customizations, integrations, documentation, and deployment support for retail clients.</li>
+              <li>Built Hardware Station extensions and invoice/label printing enhancements with custom retail reporting.</li>
+              <li>Performed performance optimization and troubleshooting for POS deployments in online and offline database scenarios.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-top">
+              <div>
+                <div class="role">Junior Software Engineer (.NET Developer)</div>
+                <div class="meta">Zewia Software Solutions (P) Ltd • Kerala, India</div>
+              </div>
+              <div class="meta">2019 – 2020</div>
+            </div>
+            <ul class="bullet-list">
+              <li>Built web applications using .NET Framework and SQL Server.</li>
+              <li>Worked across front-end, back-end, database management, and deployment tasks.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Selected Projects</h2>
+            <p>Representative work across healthcare, pharmacy, retail integration, and Dynamics Commerce customization.</p>
+          </div>
+        </div>
+        <div class="projects">
+          <div class="project-card">
+            <h3>Healthcare Insurance Integration (UAE)</h3>
+            <p>Integrated pharmacy operations with Shafafiya, DOH, and MOH processes to support compliant healthcare retail workflows.</p>
+            <div class="chips">
+              <span class="chip">Shafafiya</span>
+              <span class="chip">DOH</span>
+              <span class="chip">MOH</span>
+              <span class="chip">MPOS</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>Tatmeen Integration</h3>
+            <p>Implemented Tatmeen integration flows for pharmacy operations with a focus on process accuracy and operational continuity.</p>
+            <div class="chips">
+              <span class="chip">Tatmeen</span>
+              <span class="chip">Pharmacy</span>
+              <span class="chip">Integration</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>GS1 Barcode Scanning</h3>
+            <p>Delivered GS1 scanning customizations to improve product handling, scanning accuracy, and workflow efficiency in POS.</p>
+            <div class="chips">
+              <span class="chip">GS1</span>
+              <span class="chip">POS Customization</span>
+              <span class="chip">Retail Workflow</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>Discount & Voucher Module</h3>
+            <p>Built a fully customized discount and voucher capability within MPOS/CPOS to meet client-specific retail requirements.</p>
+            <div class="chips">
+              <span class="chip">Discount Engine</span>
+              <span class="chip">Voucher</span>
+              <span class="chip">D365 Commerce</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>Hardware Station & Printing Enhancements</h3>
+            <p>Developed Hardware Station extensions and invoice or label printing solutions for retail and pharmacy operations.</p>
+            <div class="chips">
+              <span class="chip">Hardware Station</span>
+              <span class="chip">Invoice Printing</span>
+              <span class="chip">Label Printing</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>Third-Party Integrations & Retail Reporting</h3>
+            <p>Worked on portal integration, custom reports, external application connectivity, and POS reporting improvements across client projects.</p>
+            <div class="chips">
+              <span class="chip">Portal Integration</span>
+              <span class="chip">Retail Reports</span>
+              <span class="chip">SQL Server</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container two-col">
+        <div class="card">
+          <h3>Certifications</h3>
+          <ul class="bullet-list">
+            <li>Microsoft Certified: Finance and Operations Apps Developer Associate</li>
+            <li>Exam AZ-220: Microsoft Azure IoT Developer</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Education</h3>
+          <ul class="bullet-list">
+            <li>B.Tech in Computer Science & Engineering</li>
+            <li>Heera College of Engineering and Technology</li>
+            <li>Kerala University</li>
+            <li>May 2014 – Jun 2018</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta">
+          <div>
+            <h2 style="margin-bottom:8px;">Let’s build better retail and healthcare commerce solutions.</h2>
+            <div class="muted">Available for Dynamics 365 Commerce consulting, POS customization, integrations, deployment support, and technical solution delivery.</div>
+          </div>
+          <a class="btn btn-primary" href="mailto:jyothish7776@gmail.com">Contact Me</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Jyothish Lal J • Microsoft Dynamics 365 Commerce Technical Consultant • Abu Dhabi, UAE
+    </div>
+  </footer>
+</body>
+</html>
